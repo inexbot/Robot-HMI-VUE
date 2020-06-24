@@ -2,12 +2,12 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { robotStatus } from "./default/robotStatus";
 import { robotParameter } from "./default/robotParameter";
-Vue.use(Vuex);
 
+Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
-    robotStatus: robotStatus,
-    robotParameter: robotParameter,
+    robotStatus,
+    robotParameter,
   },
   mutations: {
     SETJOINT(state) {
