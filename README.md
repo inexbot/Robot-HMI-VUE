@@ -8,7 +8,7 @@
 
 #### 当前已应用
 
-Vue、Vue-Router、Vuex、Sass-Node
+Vue、Vue-Router、Vuex、Sass-Node、Element
 
 ### 使用
 

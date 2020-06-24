@@ -1,0 +1,109 @@
+<template>
+  <div class="teach">
+    <el-row>
+      <el-col :span="12">
+        <h2>当前位置</h2>
+        <h3>坐标系</h3>
+        {{this.coordinate}}
+        {{as.pos[2]}}
+        <el-table :data="positionData">
+          <el-table-column prop="axis" label="轴"></el-table-column>
+          <el-table-column prop="value" label="值"></el-table-column>
+        </el-table>
+      </el-col>
+      <el-col :span="12">
+        <h2>手动操作</h2>
+        <el-button>伺服就绪</el-button>
+        <el-button>伺服停止</el-button>
+        <el-button>{{deadman}}</el-button>
+        <div class="Opera">
+          <div class="operaButton">
+            <el-button @click="jiji">J1-</el-button>
+            <el-button @click="this.setJ">J1+</el-button>
+          </div>
+          <div class="operaButton">
+            <el-button>J2-</el-button>
+            <el-button>J2+</el-button>
+          </div>
+          <div class="operaButton">
+            <el-button>J3-</el-button>
+            <el-button>J3+</el-button>
+          </div>
+          <div class="operaButton">
+            <el-button>J4-</el-button>
+            <el-button>J4+</el-button>
+          </div>
+          <div class="operaButton">
+            <el-button>J5-</el-button>
+            <el-button>J5+</el-button>
+          </div>
+          <div class="operaButton">
+            <el-button>J6-</el-button>
+            <el-button>J6+</el-button>
+          </div>
+        </div>
+      </el-col>
+    </el-row>
+  </div>
+</template>
+
+<script>
+import {mapState,mapActions} from 'vuex'
+export default {
+  name: "Teach",
+  computed:{
+    ...mapState(
+      {robotParameter:'robotParameter',
+      as:'robotStatus'
+      }
+    ),
+  },
+  created() {
+  },
+  data() {
+    return {
+      coordinate: "关节",
+      deadman: "上电",
+      positionData: [
+        {
+          axis: 1,
+          value: this.$store.state.robotStatus.pos[2]
+        },
+        {
+          axis: 2,
+          value: this.$store.state.robotStatus.pos[3]
+        },
+        {
+          axis: 3,
+          value: this.$store.state.robotStatus.pos[4]
+        },
+        {
+          axis: 4,
+          value: this.$store.state.robotStatus.pos[5]
+        },
+        {
+          axis: 5,
+          value: this.$store.state.robotStatus.pos[6]
+        },
+        {
+          axis: 6,
+          value: this.$store.state.robotStatus.pos[7]
+        }
+      ]
+    };
+  },
+  methods: { 
+    ...mapActions({setJ:'SETJ'}),
+    jiji(){
+      this.$store.commit('SETJOINT')
+      this.coordinate = "试试"
+    }
+   }
+};
+</script>
+<style>
+.operaButton {
+  display: flex;
+  flex-flow: row;
+}
+</style>
