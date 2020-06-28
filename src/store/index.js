@@ -12,7 +12,7 @@ export default new Vuex.Store({
   mutations: {
     SETJOINT(state) {
       state.robotStatus.pos[2]++
-      console.log(robotStatus);
+      console.log(state.robotStatus.pos[2])
     },
   },
   actions: {

@@ -5,7 +5,7 @@
         <h2>当前位置</h2>
         <h3>坐标系</h3>
         {{this.coordinate}}
-        {{as.pos[2]}}
+        {{robotStatus.pos[2]}}
         <el-table :data="positionData">
           <el-table-column prop="axis" label="轴"></el-table-column>
           <el-table-column prop="value" label="值"></el-table-column>
@@ -19,7 +19,7 @@
         <div class="Opera">
           <div class="operaButton">
             <el-button @click="jiji">J1-</el-button>
-            <el-button @click="this.setJ">J1+</el-button>
+            <el-button @click="SETJ() , updata()">J1+</el-button>
           </div>
           <div class="operaButton">
             <el-button>J2-</el-button>
@@ -51,23 +51,22 @@
 import {mapState,mapActions} from 'vuex'
 export default {
   name: "Teach",
-  computed:{
-    ...mapState(
-      {robotParameter:'robotParameter',
-      as:'robotStatus'
-      }
-    ),
-  },
-  created() {
-  },
   data() {
     return {
       coordinate: "关节",
       deadman: "上电",
-      positionData: [
+      positionData: ''
+    };
+  },
+  computed:{
+    ...mapState(['robotParameter','robotStatus'],),
+    
+  },
+  created() {
+    this.positionData = [
         {
           axis: 1,
-          value: this.$store.state.robotStatus.pos[2]
+          value: this.robotStatus.pos[2]
         },
         {
           axis: 2,
@@ -90,13 +89,20 @@ export default {
           value: this.$store.state.robotStatus.pos[7]
         }
       ]
-    };
+  },
+  mounted(){
+    
   },
   methods: { 
-    ...mapActions({setJ:'SETJ'}),
+    ...mapActions(['SETJ']),
     jiji(){
+      console.log(this,this.robotStatus)
       this.$store.commit('SETJOINT')
       this.coordinate = "试试"
+      this.updata()
+    },
+    updata(){
+    this.$forceUpdate()
     }
    }
 };
