@@ -1,24 +1,17 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { robotStatus } from "./default/robotStatus";
-import { robotParameter } from "./default/robotParameter";
+import robotStatus from "./default/robotStatus";
 
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
-    robotStatus,
-    robotParameter,
   },
   mutations: {
-    SETJOINT(state) {
-      state.robotStatus.pos[2]++
-      console.log(state.robotStatus.pos[2])
-    },
+
   },
   actions: {
-    SETJ({ commit }) {
-      commit('SETJOINT');
-    },
   },
-  modules: {},
+  modules: {
+    robotStatus:robotStatus,
+  },
 });

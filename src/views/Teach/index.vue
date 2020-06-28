@@ -5,7 +5,7 @@
         <h2>当前位置</h2>
         <h3>坐标系</h3>
         {{this.coordinate}}
-        {{robotStatus.pos[2]}}
+        {{this.pos}}
         <el-table :data="positionData">
           <el-table-column prop="axis" label="轴"></el-table-column>
           <el-table-column prop="value" label="值"></el-table-column>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import {mapState,mapActions} from 'vuex'
+import {mapActions} from 'vuex'
 export default {
   name: "Teach",
   data() {
@@ -59,34 +59,36 @@ export default {
     };
   },
   computed:{
-    ...mapState(['robotParameter','robotStatus'],),
+    pos:function(){
+      return this.$store.state.robotStatus.handleSpeed
+    }
     
   },
   created() {
     this.positionData = [
         {
           axis: 1,
-          value: this.robotStatus.pos[2]
+          value: this.pos[2]
         },
         {
           axis: 2,
-          value: this.$store.state.robotStatus.pos[3]
+          value: this.pos[3]
         },
         {
           axis: 3,
-          value: this.$store.state.robotStatus.pos[4]
+          value: this.pos[4]
         },
         {
           axis: 4,
-          value: this.$store.state.robotStatus.pos[5]
+          value: this.pos[5]
         },
         {
           axis: 5,
-          value: this.$store.state.robotStatus.pos[6]
+          value: this.pos[6]
         },
         {
           axis: 6,
-          value: this.$store.state.robotStatus.pos[7]
+          value: this.pos[7]
         }
       ]
   },
@@ -94,16 +96,16 @@ export default {
     
   },
   methods: { 
-    ...mapActions(['SETJ']),
+    ...mapActions('robotStatus',['SETJ']),
     jiji(){
       console.log(this,this.robotStatus)
-      this.$store.commit('SETJOINT')
+      this.$store.dispatch('SETJ')
       this.coordinate = "试试"
-      this.updata()
+      // this.updata()
     },
-    updata(){
-    this.$forceUpdate()
-    }
+    // updata(){
+    // this.$forceUpdate()
+    // }
    }
 };
 </script>

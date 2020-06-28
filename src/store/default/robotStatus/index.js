@@ -1,9 +1,10 @@
-export const robotStatus = {
-  robotAmount: 1,
-  operaMode: 0,
-  currentRobot: 1,
-  currentRobotType: 1,
-  /* ROBOT_TYPE:{  
+
+  const state= {
+    robotAmount: 1,
+    operaMode: 0,
+    currentRobot: 1,
+    currentRobotType: 1,
+    /* ROBOT_TYPE:{  
     R_NULL = 0,
     R_GENERAL_6S = 1,
     R_SCARA = 2,
@@ -18,49 +19,66 @@ export const robotStatus = {
     R_THREE_CARTESIAN_COORDINATE_1 = 11,
     R_FOUR_CARTESIAN_COORDINATE = 12,
   }; */
-  multiRobotMode: 0,
-  currentRobotServoState: 0,
-  deadmanState: 0,
-  currentRobotRunningState: 0,
-  handleSpeed: 1,
-  runningSpeed: 1,
-  currentUser: 1,
-  currentTool: 1,
-  currentCoordinate: 0,
-  currentForwardOrBackward: false,
-  pos: [
-    2,
-    1,
-    111.11,
-    222.22,
-    333.33,
-    444.44,
-    555.55,
-    666.66,
-    777.77,
-    888.88,
-    999,
-    99,
-    0,
-    0,
-    0,
-  ],
-  deg: 0,
-  posDeg: [0, 0, 0, 0, 0, 0, 0],
-  robot1OuterAmount: "0",
-  robot2OuterAmount: "1",
-  robot3OuterAmount: "2",
-  // robot4OuterAmount: "3",
-  outerActivedRobot: "robot1",
-  outerActivedOuter: "转台1",
-  count: 2,
-  index: 3,
-  robot1OpenedProgram: false,
-  robot1CurrentProgram: "",
-  robot2OpenedProgram: false,
-  robot2CurrentProgram: "",
-  robot3OpenedProgram: false,
-  robot3CurrentProgram: "",
-  robot4OpenedProgram: false,
-  robot4CurrentProgram: "",
-};
+    multiRobotMode: 0,
+    currentRobotServoState: 0,
+    deadmanState: 0,
+    currentRobotRunningState: 0,
+    handleSpeed: 1,
+    runningSpeed: 1,
+    currentUser: 1,
+    currentTool: 1,
+    currentCoordinate: 0,
+    currentForwardOrBackward: false,
+    pos: [
+      2,
+      1,
+      111.11,
+      222.22,
+      333.33,
+      444.44,
+      555.55,
+      666.66,
+      777.77,
+      888.88,
+      999,
+      99,
+      0,
+      0,
+      0,
+    ],
+    deg: 0,
+    posDeg: [0, 0, 0, 0, 0, 0, 0],
+    robot1OuterAmount: "0",
+    robot2OuterAmount: "1",
+    robot3OuterAmount: "2",
+    // robot4OuterAmount: "3",
+    outerActivedRobot: "robot1",
+    outerActivedOuter: "转台1",
+    count: 2,
+    index: 3,
+    robot1OpenedProgram: false,
+    robot1CurrentProgram: "",
+    robot2OpenedProgram: false,
+    robot2CurrentProgram: "",
+    robot3OpenedProgram: false,
+    robot3CurrentProgram: "",
+    robot4OpenedProgram: false,
+    robot4CurrentProgram: "",
+  }
+  
+ const mutations={
+    SETJOINT(state) {
+      state.handleSpeed++
+      console.log(state.handleSpeed)
+    },
+  }
+  const actions ={
+    SETJ({commit}){
+      commit('SETJOINT');
+    }
+  }
+export default{
+  state,
+  actions,
+  mutations
+}
