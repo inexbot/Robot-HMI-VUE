@@ -1,5 +1,4 @@
-export const robotParameter = {
-  state: {
+const state = {
     dhPara: {
       Link: [
         { a: 1, b: 2, c: 3, d: 4, theta: 5 },
@@ -142,5 +141,19 @@ export const robotParameter = {
         ReducRatio: 143,
       },
     },
-  },
-};
+  }
+  const mutations = {
+
+  }
+  const getters = {
+
+  }
+  const actions = {
+
+  }
+  export default{
+    state,
+    mutations,
+    getters,
+    actions
+  }

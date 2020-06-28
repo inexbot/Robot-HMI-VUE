@@ -68,9 +68,15 @@
   
  const mutations={
     SETJOINT(state) {
-      state.handleSpeed++
-      console.log(state.handleSpeed)
+      let i = state.pos[2]
+      i++
+      state.pos.splice(2,1,i)
+
+      console.log(state.pos[2])
     },
+  }
+  const getters = {
+    posG: state => state.pos
   }
   const actions ={
     SETJ({commit}){
@@ -79,6 +85,7 @@
   }
 export default{
   state,
+  getters,
   actions,
   mutations
 }

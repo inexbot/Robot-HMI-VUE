@@ -5,7 +5,7 @@
         <h2>当前位置</h2>
         <h3>坐标系</h3>
         {{this.coordinate}}
-        {{this.pos}}
+        {{this.pos[2]}}
         <el-table :data="positionData">
           <el-table-column prop="axis" label="轴"></el-table-column>
           <el-table-column prop="value" label="值"></el-table-column>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 export default {
   name: "Teach",
   data() {
@@ -59,9 +59,9 @@ export default {
     };
   },
   computed:{
-    pos:function(){
-      return this.$store.state.robotStatus.handleSpeed
-    }
+    ...mapGetters({
+      pos:'posG'
+    })
     
   },
   created() {
